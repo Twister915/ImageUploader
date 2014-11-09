@@ -22,7 +22,7 @@ class FileController extends BaseController {
     $file = Input::file('file');
     $upload = new Upload;
     $upload->url = FileController::generateRandomKey(12);
-    $fileName = FileContorller::generateRandomKey(36);
+    $fileName = FileController::generateRandomKey(36);
     $upload->fileName = $fileName;
     $upload->type = $file->getMimeType();
     $file->move(storage_path(), $fileName);
