@@ -39,8 +39,9 @@ class FileController extends BaseController {
     if (!File::exists($filePath)) {
       return Response::make('The requested file was missing from the location it should be in!', 500);
     }
-    $headers = ['Content-Type' => $upload->type];
-    return Response::download($filePath, $file, $headers);
+    $response = Response::make(file_get_contents($filePath), 200);
+    $response->header('Content-Type', $upload->type);
+    return $response;
   }
 
   public function deleteFile($file) {
