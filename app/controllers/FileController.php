@@ -35,7 +35,7 @@ class FileController extends BaseController {
     if ($upload == null) {
       return Response::make('The requested file was not found!', 400);
     }
-    $filePath = stoarge_path() . '/' . $upload->fileName;
+    $filePath = storage_path() . '/' . $upload->fileName;
     if (!File::exists($filePath)) {
       return Response::make('The requested file was missing from the location it should be in!', 500);
     }
