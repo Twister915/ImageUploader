@@ -26,7 +26,7 @@ class FileController extends BaseController {
     $upload->fileName = $fileName;
     $upload->type = $file->getMimeType();
     $file->move(storage_path(), $fileName);
-    App::instance('key')->uploads()->save($upload);
+    App::make('key')->uploads()->save($upload);
     return Redirect::to($upload->url);
   }
 
