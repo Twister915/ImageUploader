@@ -14,7 +14,7 @@ class FileController extends BaseController {
 
   public function uploadFile() {
     $validator = Validator::make(Input::all(), [
-      'file' => 'required|maximum:200000|mimes:jpeg,bmp,png,txt,aif,aiff,mp2,mp2a,mp21,mp3,mp4,mp4a,mp4s,mp4v,mpe,mpeg,mpeg4,mpga,zip,7z,gtar,swf'
+      'file' => 'required|max:200000|mimes:jpeg,bmp,png,txt,aif,aiff,mp2,mp2a,mp21,mp3,mp4,mp4a,mp4s,mp4v,mpe,mpeg,mpeg4,mpga,zip,7z,gtar,swf'
     ]);
     if ($validator->fails()) {
       return ['error' => true, 'cause' => $validator->messages()];
