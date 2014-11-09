@@ -23,9 +23,9 @@ class FileController extends BaseController {
     $upload = new Upload;
     $upload->url = FileController::generateRandomKey(12);
     $fileName = FileController::generateRandomKey(36);
-    $upload->fileName = $fileName;
+    $upload->filename = $fileName;
     $upload->type = $file->getMimeType();
-    $file->move(storage_path(), $fileName);
+    $file->move(storage_path() . '/files', $fileName);
     App::make('ApiKey')->uploads()->save($upload);
     return Redirect::to($upload->url);
   }
@@ -35,7 +35,7 @@ class FileController extends BaseController {
     if ($upload == null) {
       return Response::make('The requested file was not found!', 400);
     }
-    $filePath = storage_path() . '/' . $upload->fileName;
+    $filePath = storage_path() . '/files/' . $upload->filename;
     if (!File::exists($filePath)) {
       return Response::make('The requested file was missing from the location it should be in!', 500);
     }
