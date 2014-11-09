@@ -15,4 +15,6 @@ return array(
 
 	'debug' => true,
 
+	'secure' => false
+
 );
