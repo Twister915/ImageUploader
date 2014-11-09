@@ -41,7 +41,7 @@ Route::filter('apiKey', function() {
 	if ($key == null) {
 		return ['error' => true, 'cause' => ['API Key Specified is Invalid!']];
 	}
-	App::instance('apiKey', $key);
+	App::instance('ApiKey', $key);
 });
 /*
 |--------------------------------------------------------------------------
@@ -54,10 +54,6 @@ Route::filter('apiKey', function() {
 |
 */
 
-Route::filter('guest', function()
-{
-	if (Auth::check()) return Redirect::to('/');
-});
 
 /*
 |--------------------------------------------------------------------------
