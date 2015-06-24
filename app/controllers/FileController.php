@@ -56,7 +56,7 @@ class FileController extends BaseController {
     }
     //video stuff
     if (strpos($upload->type, "video/") == 0) {
-      return View::make("videostreamer")->withVideoId($upload->url)->withVideoMime($upload->type);
+      return View::make("videostreamer", ["videoId" => $upload->url, "videoMime" => $upload->type]);
     }
     $response = Response::make(file_get_contents($filePath), 200);
     $response->header('Content-Type', $upload->type);

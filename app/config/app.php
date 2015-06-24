@@ -191,6 +191,6 @@ return array(
 
 	),
 
-	'secure' => $_ENV["SECURE"],
+	'secure' => false,
 
 );
