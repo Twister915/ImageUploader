@@ -6,8 +6,12 @@
   </head>
   <body>
     <video class="video-js vjs-default-skin"
-  controls preload="auto" width="100%" height="100%"
-  poster="http://video-js.zencoder.com/oceans-clip.png">
+    autoplay
+    controls
+    preload="auto"
+    width="100%"
+    height="100%"
+    loop
    <source src="http://tmg.pw/raw/{{{$videoId}}}" type='{{{$videoMime}}}' />
    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
   </video>
