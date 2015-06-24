@@ -14,4 +14,5 @@
 Route::post('/up', ['before' => 'apiKey', 'uses' => 'FileController@uploadFile']);
 Route::delete('/{file}', ['before' => 'apiKey', 'uses' => 'FileController@deleteFile']);
 Route::get('/info/{file}', ['before' => 'apiKey', 'uses' => 'FileController@getInfoFor']);
-Route::get('/{file}', 'FileController@getFile');
+Route::get('/{file}', 'FileController@showFile');
+Route::get('/raw/{file}', 'FileController@getFile');

@@ -14,7 +14,7 @@ class FileController extends BaseController {
 
   public function uploadFile() {
     $validator = Validator::make(Input::all(), [
-      'file' => 'required|max:200000|mimes:jpeg,bmp,png,txt,aif,aiff,mp2,mp2a,mp21,mp3,mp4,mp4a,mp4s,mp4v,mpe,mpeg,mpeg4,mpga,zip,7z,gtar,swf'
+      'file' => 'required|mimes:jpeg,bmp,png,txt,aif,aiff,mp2,mp2a,mp21,mp3,mp4,mp4a,mp4s,mp4v,mpe,mpeg,mpeg4,mpga,zip,7z,gtar,swf'
     ]);
     if ($validator->fails()) {
       return ['error' => true, 'cause' => $validator->messages()];
@@ -38,6 +38,25 @@ class FileController extends BaseController {
     $filePath = storage_path() . '/files/' . $upload->filename;
     if (!File::exists($filePath)) {
       return Response::make('The requested file was missing from the location it should be in!', 500);
+    }
+    $response = Response::make(file_get_contents($filePath), 200);
+    $response->header('Content-Type', $upload->type);
+    return $response;
+  }
+
+  public function showFile($file) {
+    $upload = Upload::where('url', '=', $file)->first();
+    if ($upload == null) {
+      return Response::make('The requested file was not found!', 400);
+    }
+
+    $filePath = storage_path() . '/files/' . $upload->filename;
+    if (!File::exists($filePath)) {
+      return Response::make('The requested file was missing from the location it should be in!', 500);
+    }
+    //video stuff
+    if (strpos($upload->type, "video/") == 0) {
+      return View::make("videostreamer")->withVideoId($upload->url)->withVideoMime($upload->type);
     }
     $response = Response::make(file_get_contents($filePath), 200);
     $response->header('Content-Type', $upload->type);
