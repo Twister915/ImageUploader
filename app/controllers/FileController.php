@@ -55,7 +55,7 @@ class FileController extends BaseController {
       return Response::make('The requested file was missing from the location it should be in!', 500);
     }
     //video stuff
-    if (strpos($upload->type, "video/") == 0) {
+    if (strpos($upload->type, "video/") === 0) {
       return View::make("videostreamer", ["videoId" => $upload->url, "videoMime" => $upload->type]);
     }
     $response = Response::make(file_get_contents($filePath), 200);
