@@ -3,6 +3,11 @@
     <title>Video Player - {{{$videoId}}}</title>
     <link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
     <script src="//vjs.zencdn.net/4.12/video.js"></script>
+    <style>
+    body {
+      background-color:black;
+    }
+    </style>
   </head>
   <body>
     <video class="video-js vjs-default-skin"
